@@ -1,5 +1,8 @@
 package filecounter.servlet;
 
+import ie.gmit.Fibonacci;
+import ie.gmit.Fibonacci;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,15 +26,28 @@ public class FileCounter extends HttpServlet {
 	  private FileDao dao;
 
 	  @Override
-	  protected void doGet(HttpServletRequest request,
-	      HttpServletResponse response) throws ServletException, IOException {
+	  protected void doGet(HttpServletRequest req, HttpServletResponse rsp) 
+			  throws ServletException, IOException
+	  {
+		  Fibonacci fs = null;
+			
+			String rType = req.getParameter("Request-type");
+			if(rType.equals("Add"))
+			{
+				String jobNum = fs.add(req.getParameter("max"));
+				//out.write("Job No.");
+			}
+			else if(rType.equals("poll"))
+			{
+				String jobNum = fs.add(req.getParameter("Job No"));
+			}
 	    // Set a cookie for the user, so that the counter does not increate
 	    // every time the user press refresh
-	    HttpSession session = request.getSession(true);
+	    HttpSession session = req.getSession(true);
 	    // Set the session valid for 5 secs
 	    session.setMaxInactiveInterval(5);
-	    response.setContentType("text/plain");
-	    PrintWriter out = response.getWriter();
+	    rsp.setContentType("text/plain");
+	    PrintWriter out = rsp.getWriter();
 	    if (session.isNew()) {
 	      count++;
 	    }

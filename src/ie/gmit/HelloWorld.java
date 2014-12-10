@@ -1,3 +1,4 @@
+package ie.gmit;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -20,7 +21,5 @@ public class HelloWorld extends HttpServlet {
     		+ "<title> My first jsp</title> \n" + "</head> \n" + 
     		"<body> \n" + "<font size=\"12px\" color=\"" + color + 
     		"\">" + "Hello World" + "</font> \n" + "</body> \n" + "</html>" );
-  
-    //out.println("Fibonnaci");
   }  
 }
