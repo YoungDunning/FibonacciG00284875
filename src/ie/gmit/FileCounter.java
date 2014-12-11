@@ -30,15 +30,33 @@ public class FileCounter extends HttpServlet {
 		  fs = new FibService();
 
 			String rType = req.getParameter("request-type");
+			System.out.println(rType);
 			if(rType.equals("Add"))
 			{
-				String jobNum = "";
-				jobNum += fs.add(Integer.parseInt(req.getParameter("jobNumber")));
-				rsp.sendRedirect("FibReq.jsp");
+				String jobNumber = "";
+				jobNumber += fs.add(Integer.parseInt(req.getParameter("jobNumber")));
+				//rsp.sendRedirect("FibReq.jsp");
+			
+				req.getSession().setAttribute("jobNumber", jobNumber);
+				req.getSession().setAttribute("Timer", 10);
+				req.getSession().setAttribute("request-type", "poll");
+				req.getRequestDispatcher("FibReq.jsp").forward(req, rsp);
 			}
-			else if(rType.equals("poll"))
+			
+			else if(rType.equals("pull"))
 			{
-				String jobNum = fs.add(req.getParameter("jobNumber"));
+				String jobNumber ="";
+				jobNumber += fs.add(req.getParameter("jobNumber"));
+				rsp.sendRedirect("Result.jsp");
+				if(fs.getResult(Integer.parseInt(jobNumber)) != null)
+				{
+					//Send to client
+				}
+				else
+				{
+					//response.getRequest
+				}
+			
 			}
 	    // Set a cookie for the user, so that the counter does not increate
 	    // every time the user press refresh

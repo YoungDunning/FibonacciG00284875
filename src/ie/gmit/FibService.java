@@ -3,6 +3,7 @@ package ie.gmit;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Random;
 
 public class FibService {
 
@@ -13,9 +14,12 @@ public class FibService {
 	
 	public int add(int max)
 	{
+		Random random = new Random(System.currentTimeMillis());
+		int number = ((random.nextInt(199)+1));
+		inque.add(new FibRequest(number, max));
 		//Generates a random number
-		int number = (int) Math.random();
 		return number;
+		
 	}
 	
 	public String getResult(int jobNum)
@@ -33,7 +37,6 @@ public class FibService {
 	}
 
 	public String add(String parameter) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
