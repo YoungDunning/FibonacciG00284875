@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Fibonacci Request</title>
 </head>
 <body>
-
-
+	Fibonacci Request<br>
+	Job number is :<%=request.getAttribute("jobNumber") %><br>
+	<input type="hidden" name="" value="Add">
+	Page will refresh in 10 seconds.
 </body>
 </html>

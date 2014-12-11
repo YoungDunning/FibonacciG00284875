@@ -31,4 +31,9 @@ public class FibService {
 			return null;
 		}
 	}
+
+	public String add(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,7 +1,6 @@
-package filecounter.servlet;
+package ie.gmit;
 
-import ie.gmit.Fibonacci;
-import ie.gmit.Fibonacci;
+import filecounter.servlet.FileDao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,39 +12,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import filecounter.dao.FileDao;
-
 /**
  * Servlet implementation class FileCounter
  */
 @WebServlet("/FileCounter")
 public class FileCounter extends HttpServlet {
 	  private static final long serialVersionUID = 1L;
-
+	  private FibService fs;
+	  
 	  int count;
 	  private FileDao dao;
 
 	  @Override
-	  protected void doGet(HttpServletRequest req, HttpServletResponse rsp) 
+	  public void doGet(HttpServletRequest req, HttpServletResponse rsp) 
 			  throws ServletException, IOException
 	  {
-		  Fibonacci fs = null;
-			
-			String rType = req.getParameter("Request-type");
+		  fs = new FibService();
+
+			String rType = req.getParameter("request-type");
 			if(rType.equals("Add"))
 			{
-				String jobNum = fs.add(req.getParameter("max"));
-				//out.write("Job No.");
+				String jobNum = "";
+				jobNum += fs.add(Integer.parseInt(req.getParameter("jobNumber")));
+				rsp.sendRedirect("FibReq.jsp");
 			}
 			else if(rType.equals("poll"))
 			{
-				String jobNum = fs.add(req.getParameter("Job No"));
+				String jobNum = fs.add(req.getParameter("jobNumber"));
 			}
 	    // Set a cookie for the user, so that the counter does not increate
 	    // every time the user press refresh
 	    HttpSession session = req.getSession(true);
-	    // Set the session valid for 5 secs
-	    session.setMaxInactiveInterval(5);
+	    
+	    
+	    // Set the session valid for 10 secs
+	    session.setMaxInactiveInterval(10);
 	    rsp.setContentType("text/plain");
 	    PrintWriter out = rsp.getWriter();
 	    if (session.isNew()) {

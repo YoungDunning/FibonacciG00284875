@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Result</title>
 </head>
 <body>
-
+		Result<br>
+		<input type=hidden >
+					<input type="button" name="Home.jsp" value="Return To Start">						
+		
 </body>
 </html>

@@ -4,8 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-
-public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
+public class Fibonacci 
+extends UnicastRemoteObject implements RemoteFibonacci{
 
 	/*public String getFibonacciSequence(int max) throws RemoteException
 	{
@@ -18,7 +18,8 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 	}
 	
 	@Override
-	public void getFibonacci(int max) throws RemoteException {
+	public String getFibonacci(int max) throws RemoteException {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -30,7 +31,11 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 		}
 		return results;
 	}
-	
+
+	public String call(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public String add(String parameter) {
 		// TODO Auto-generated method stub
