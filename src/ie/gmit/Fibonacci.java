@@ -8,16 +8,19 @@ public class Fibonacci extends UnicastRemoteObject implements RemoteFibonacci{
 	
 	private static final long serialVersionUID = 5400104440557706773L;
 
-	public Fibonacci() throws RemoteException
+	public Fibonacci(int port) throws RemoteException
 	{
-		super();
+		super(port);
 	}
 	
 	@Override
 	public String getFibonacci(int max) throws RemoteException {
-		return null;
 		// TODO Auto-generated method stub
-		
+		List<Integer> results = new ArrayList<Integer>();
+		for (int i=0; i<max; i++){
+			results.add((int) Math.round(Math.pow(Math.sqrt(5)+1, i) / (Math.pow(2, i) * Math.sqrt(5))));
+		}
+		return results.toString();
 	}
 
 	public List<Integer> genFib(int fibNum) throws RemoteException{

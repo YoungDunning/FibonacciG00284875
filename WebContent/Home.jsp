@@ -11,7 +11,7 @@
 			 Please enter your Fibonacci Sequence number: <br>
 			<input type="hidden" name="request-type" value="Add">
 			Enter a number between 1-100<br>
-			<input type="text" name="jobNumber"size="20px">
+			<input type="text" name="max"size="20px">
 			<input type="submit" value="submit">						
 		</form>
 </body>

@@ -8,8 +8,12 @@
 </head>
 <body>
 		Result<br>
-		<input type=hidden >
-					<input type="button" name="Home.jsp" value="Return To Start">						
+		
+		<%=request.getParameter("result") %>
+		<form action="Home.jsp">
+		<input type="submit"  value="Return To Start">	
+		</form>
+							
 		
 </body>
 </html>
