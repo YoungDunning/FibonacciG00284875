@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
 /**
  * Servlet implementation class FileCounter
  */
@@ -25,7 +23,7 @@ public class FileCounter extends HttpServlet {
 	  private static final long serialVersionUID = 1L;
 	  private FibService fs;
 	  
-	  int count;
+	  int counter;
 	  private FileDao dao;
 
 	  @Override
@@ -36,7 +34,7 @@ public class FileCounter extends HttpServlet {
 	    	Fibonacci fibonacci=new Fibonacci(1099);
 	    	LocateRegistry.createRegistry(1099);
 	    	Naming.bind("fibo",fibonacci);
-	      count = dao.getCount();
+	      counter = dao.getCount();
 	    } catch (Exception e) {
 	      getServletContext().log("An exception occurred in FileCounter", e);
 	      throw new ServletException("An exception occurred in FileCounter"
@@ -69,15 +67,15 @@ public class FileCounter extends HttpServlet {
 			else if(rType.equals("pull"))
 			{
 				System.out.println("This is pull");
-				String result = null;
+				String results = null;
 				try {
 					RemoteFibonacci remote=(RemoteFibonacci)Naming.lookup("rmi://localhost:1099/fibo");
 					System.out.println(req.getSession().getAttribute("max"));
 					//result=remote.getFibonacci(Integer.valueOf((String) req.getSession().getAttribute("max")));
-					result=remote.getFibonacci(Integer.valueOf(String.valueOf(req.getSession().getAttribute("max"))));
+					results=remote.getFibonacci(Integer.valueOf(String.valueOf(req.getSession().getAttribute("max"))));
 
-					System.out.println(result);
-					req.setAttribute("result",result);
+					System.out.println(results);
+					req.setAttribute("results",results);
 				} catch (NotBoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -99,7 +97,7 @@ public class FileCounter extends HttpServlet {
 				//{
 					//Send to client
 					//req.setAttribute("jobNumber", jobNumber);
-				    rsp.sendRedirect("Result.jsp?result="+result);	
+				    rsp.sendRedirect("Result.jsp?results="+results);	
 				//}
 //				else
 //				{
@@ -136,7 +134,7 @@ public class FileCounter extends HttpServlet {
 	public void destroy() {
 	    super.destroy();
 	    try {
-	      dao.save(count);
+	      dao.save(counter);
 	    } catch (Exception e) {
 	      e.printStackTrace();
 	    }

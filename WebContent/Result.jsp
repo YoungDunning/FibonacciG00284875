@@ -9,7 +9,7 @@
 <body>
 		Result<br>
 		
-		<%=request.getParameter("result") %>
+		<%=request.getParameter("results") %>
 		<form action="Home.jsp">
 		<input type="submit"  value="Return To Start">	
 		</form>

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 public class FileDao {
 
   public int getCount() {
-    int count = 0;
+    int counter = 0;
     // Load the file with the counter
     FileReader fileReader = null;
     BufferedReader bufferedReader = null;
@@ -28,7 +28,7 @@ public class FileDao {
       fileReader = new FileReader(f);
       bufferedReader = new BufferedReader(fileReader);
       String initial = bufferedReader.readLine();
-      count = Integer.parseInt(initial);
+      counter = Integer.parseInt(initial);
     } catch (Exception ex) {
       if (writer != null) {
         writer.close();
@@ -41,7 +41,7 @@ public class FileDao {
         e.printStackTrace();
       }
     }
-    return count;
+    return counter;
   }
 
   public void save(int count) throws Exception {
